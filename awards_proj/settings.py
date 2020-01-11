@@ -61,6 +61,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'pyuploadcare.dj',
     'awards_app.apps.AwardsAppConfig',
     'django.contrib.admin',
