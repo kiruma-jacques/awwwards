@@ -9,4 +9,4 @@ class ProfileUpdateForm(forms.ModelForm):
 class ProjectUploadForm(forms.ModelForm):
     class Meta:
         model=Project
-        exclude=['user','profile']
+        exclude=['user']
