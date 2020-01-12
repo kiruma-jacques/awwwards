@@ -10,8 +10,9 @@ class Profile(models.Model):
     email=models.EmailField()
 
 class Project(models.Model):
-    user=models.ForeignKey(User)
-    profile=models.ForeignKey(Profile)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    profile=models.ForeignKey(Profile,on_delete=models.CASCADE)
     title=models.CharField(max_length=150)
     landing=ImageField(manual_crop='')
     description=models.TextField()
+    live_site=models.URLField(max_length=299)
