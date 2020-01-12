@@ -4,7 +4,7 @@
 <p class="text-center">this is an awwward app</p>
 <form class="form-group" action="{%url 'homepage'%}" method="post">
   {%csrf_token%}
-  {%bootstrap_form project_upload%}
-  <input type="submit" value="Upload" class="btn btn-sm btn">
+  {%bootstrap_form proj_upload%}
+  <input type="submit" value="Upload" class="btn btn-sm btn-primary">
 </form>
 {%endblock%}
