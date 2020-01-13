@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from pyuploadcare.dj.models import ImageField
+from django.core.validators import MaxValueValidator,MinValueValidator
 # Create your models here.
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
@@ -18,4 +19,9 @@ class Project(models.Model):
 
 class Review(models.Model):
     project=models.ForeignKey(Project,on_delete=models.CASCADE,related_name='review')
-    User=models.ForeignKey(User,on_delete=models.CASCADE,related_name='review')
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='review')
+    comment=models.TextField()
+    design=models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
+    useability=models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
+    content=models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
+    
