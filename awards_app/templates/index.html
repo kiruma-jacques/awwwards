@@ -1,10 +1,37 @@
 {%extends 'base.html'%}
 {%load bootstrap4%}
 {%block content%}
+<!--Upload Modal -->
+<div class="modal fade" id="uploadForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Post an image</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="form-group" action="{% url 'homepage' %}" method="post">
+        {% csrf_token %}
+        {%bootstrap_form proj_upload%}
+        <input class="btn btn-outline-success" type="submit" name="" value="Upload">
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
 <p class="text-center">this is an awwward app</p>
-<form class="form-group" action="{%url 'homepage'%}" method="post">
-  {%csrf_token%}
-  {%bootstrap_form proj_upload%}
-  <input type="submit" value="Upload" class="btn btn-sm btn-primary">
-</form>
+<div class="container">
+  <div class="row">
+    {%for project in projects%}
+    <p>{{project.user.username}}</p>
+    <img class="img-thumbnail" src="{{project.landing.cdn_url}}" alt="landing page">
+    <a href="{{project.live_site}}">Visit Site</a>
+
+    {%endfor%}
+  </div>
+</div>
 {%endblock%}

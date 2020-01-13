@@ -15,3 +15,7 @@ class Project(models.Model):
     landing=ImageField(manual_crop='')
     description=models.TextField()
     live_site=models.URLField(max_length=299)
+
+class Review(models.Model):
+    project=models.ForeignKey(Project,on_delete=models.CASCADE,related_name='review')
+    User=models.ForeignKey(User,on_delete=models.CASCADE,related_name='review')

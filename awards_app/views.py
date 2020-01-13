@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Project
-from .forms import ProjectUploadForm
+from .forms import ProjectUploadForm,ProfileUpdateForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -19,3 +19,19 @@ def index(request,**kwargs):
         'proj_upload':proj_upload,
     }
     return render(request, 'index.html', locals())
+
+def myProfile(request,**kwargs):
+    current_user=request.user
+    prof_update=ProfileUpdateForm(request.POST)
+    if prof_update.is_valid():
+        profile=prof_update.save(commit=False)
+        profile.user=current_user
+        profile.save()
+        return HttpResponseRedirect(request.path_info)
+    else:
+        prof_update=ProfileUpdateForm()
+    context={
+        'current_user':current_user,
+        'prof_update':prof_update,
+    }
+    return render(request, 'profile.html', locals())
