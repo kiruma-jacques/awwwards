@@ -30,7 +30,7 @@
     <p>{{project.user.username}}</p>
     <img class="img-thumbnail" src="{{project.landing.cdn_url}}" alt="landing page">
     <a href="{{project.live_site}}">Visit Site</a>
-    <button type="button" name="button"><a href="{%url 'review'%}">leave a review</a></button>
+    <button type="button" name="button"><a href="{%url 'review' project.id%}">leave a review</a></button>
     {%endfor%}
   </div>
 </div>
