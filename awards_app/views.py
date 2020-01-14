@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Project
-from .forms import ProjectUploadForm,ProfileUpdateForm
+from .forms import ProjectUploadForm,ProfileUpdateForm, ReviewForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -35,3 +35,25 @@ def myProfile(request,**kwargs):
         'prof_update':prof_update,
     }
     return render(request, 'profile.html', locals())
+
+def review(request,**kwargs):
+    current_user=request.user
+    print("------------------------------")
+    id = P
+    print(Project.get_single_project())
+    current_site=Project.get_single_project(id)
+    review_form=ReviewForm(request.POST)
+    if review_form.is_valid():
+        review=review_form.save(commit=False)
+        review.user=current_user
+        review.project=current_site
+        review.save()
+        return HttpResponseRedirect(request.path_info)
+    else:
+        review_form=ReviewForm()
+    context={
+        'current_user':current_user,
+        'current_site':current_site,
+        'review_form':review_form,
+    }
+    return render(request, 'comment.html', locals())
