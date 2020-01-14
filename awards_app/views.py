@@ -36,21 +36,21 @@ def myProfile(request,**kwargs):
     }
     return render(request, 'profile.html', locals())
 
-def review(request,id):
-    current_user=request.user
-    current_site=Project.objects.get(id=id)
-    review_form=ReviewForm(request.POST)
-    if review_form.is_valid():
-        review=review_form.save(commit=False)
-        review.user=current_user
-        review.project=current_site
-        review.save()
-        return redirect(reverse('review'))
-    else:
-        review_form=ReviewForm()
-    context={
-        'current_user':current_user,
-        'current_site':current_site,
-        'review_form':review_form,
-    }
-    return render(request, 'comment.html', locals())
+# def review(request,id):
+#     current_user=request.user
+#     current_site=Project.objects.get(id=id)
+#     review_form=ReviewForm(request.POST)
+#     if review_form.is_valid():
+#         review=review_form.save(commit=False)
+#         review.user=current_user
+#         review.project=current_site
+#         review.save()
+#         return HttpResponseRedirect(request.path_info)
+#     else:
+#         review_form=ReviewForm()
+#     context={
+#         'current_user':current_user,
+#         'current_site':current_site,
+#         'review_form':review_form,
+#     }
+#     return render(request, 'comment.html', locals())
