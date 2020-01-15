@@ -41,7 +41,7 @@ class Review(models.Model):
 
     def __str__(self):
         return self.user.username
-    
+
     @classmethod
-    def get_all_reviews(cls):
-        return cls.objects.all()
+    def project_reviews(cls, id):
+        return cls.objects.filter(id)

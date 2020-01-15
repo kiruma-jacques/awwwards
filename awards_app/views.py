@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Project
+from .models import Project,Review
 from .forms import ProjectUploadForm,ProfileUpdateForm, ReviewForm
 from django.http import HttpResponseRedirect
 
@@ -53,7 +53,7 @@ def details(request, id):
     context={
         'current_user':current_user,
         'current_site':current_site,
-        'review_form':review_form,
+        'review_form':review_form,        
     }
     return render(request, 'proj_details.html',locals())
 
