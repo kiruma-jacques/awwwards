@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="container">
+  <div class="row">
+    {%if got_projects%}
+    <div class="row">
+      <div class="card m-4" style="width: 18rem;">
+        <a href="#"><img class="card-img-top" src="{{got_projects.landing.cdn_url}}" alt="Card image cap"></a>
+        <div class="card-body">
+          <h5 class="card-title">{{got_projects.title}}</h5>
+          <p class="card-text">Upload by <b>{{got_projects.user.username}}</b></p>
+          <a href="{{got_projects.live_site}}" class="btn btn-primary">Visit Site</a>
+        </div>
+      </div>
+    </div>
+    {%else%}
+    <h1 class="text-center">{{message}}</h1>
+    {%endif%}
+  </div>
+</div>
+{%endblock%}

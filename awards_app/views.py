@@ -23,7 +23,7 @@ def index(request,**kwargs):
 def myProfile(request,**kwargs):
     current_user=request.user
     prof_update=ProfileUpdateForm(request.POST)
-    user_posts=Project.objects.filter(id=current_user.id)
+    user_posts=Project.objects.filter(user=current_user.id)
     if prof_update.is_valid():
         profile=prof_update.save(commit=False)
         profile.user=current_user
@@ -40,7 +40,7 @@ def myProfile(request,**kwargs):
 
 # def review(request,id):
 #     current_user=request.user
-#     current_site=Project.objects.get(id=id)
+#     current_site=Project.objects.filter(id=sid)
 #     review_form=ReviewForm(request.POST)
 #     if review_form.is_valid():
 #         review=review_form.save(commit=False)
@@ -56,3 +56,16 @@ def myProfile(request,**kwargs):
 #         'review_form':review_form,
 #     }
 #     return render(request, 'comment.html', locals())
+
+def search_title(request):
+    if request.method == "GET":
+        search_term=request.GET.get('search')
+        got_articles=Project.objects.filter(title__contains=search_term)
+        context={
+            'got_articles':got_articles,
+        }
+        return render(request, 'results.html', locals())
+    else:
+        message="Looking for something, type it and hit search"
+        return render(request, 'results.html', {'message':message})
+        
