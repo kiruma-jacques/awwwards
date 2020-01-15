@@ -60,7 +60,7 @@ def myProfile(request,**kwargs):
 def search_title(request):
     if request.method == "GET":
         search_term=request.GET.get('search')
-        got_projects=Project.objects.filter(title__contains=search_term)[::-1]
+        got_projects=Project.objects.filter(title__icontains=search_term)[::-1]
         context ={
             'got_projects':got_projects,
         }
