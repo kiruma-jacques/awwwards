@@ -42,5 +42,37 @@
     </div>
   </div>
 </div>
+<h4 class="text-center m-4"><u>Comments:</u></h4>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-2">
 
+    </div>
+    <div class="col-md-8">
+      {%if proj_reviews%}
+      {%for proj_review in proj_reviews%}
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{proj_review.user.profile.avi.cdn_url}}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{proj_review.user.username}}</h5>
+              <p class="card-text"><em>{{proj_review.comment}}</em></p>
+              <h5>Ratings:</h5>
+              <p class="card-text">Design: {{proj_review.design}}</p>
+              <p class="card-text">Useability: {{proj_review.useability}}</p>
+              <p class="card-text">Content: {{proj_review.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+      {%endif%}
+    <div class="col-md-2">
+
+    </div>
+  </div>
+</div>
 {%endblock%}
