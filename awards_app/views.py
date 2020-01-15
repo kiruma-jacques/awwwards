@@ -60,12 +60,11 @@ def myProfile(request,**kwargs):
 def search_title(request):
     if request.method == "GET":
         search_term=request.GET.get('search')
-        got_articles=Project.objects.filter(title__contains=search_term)
+        got_projects=Project.objects.filter(title__contains=search_term)[::-1]
         context={
-            'got_articles':got_articles,
+            'got_projects':got_projects,
         }
         return render(request, 'results.html', locals())
     else:
         message="Looking for something, type it and hit search"
         return render(request, 'results.html', {'message':message})
-        
