@@ -28,8 +28,8 @@ class Project(models.Model):
         return cls.objects.all()
 
     @classmethod
-    def get_single_project(cls,**args):       
-        return cls.objects.filter(id=id)
+    def single_project(cls,id):
+        return cls.objects.get(id=id)
 
 class Review(models.Model):
     project=models.ForeignKey(Project,on_delete=models.CASCADE,related_name='review')

@@ -2,9 +2,8 @@
 {%load bootstrap4%}
 
 {%block content%}
-<p>{{current_user.username}}</p>
 <p>{{current_site.title}}</p>
-<form class="form-group" action="{%url 'review'%}" method="post">
+<form class="form-group" action="{%url 'details'%}" method="post">
   {%csrf_token%}
   {{review_form}}
 </form>

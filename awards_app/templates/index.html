@@ -54,11 +54,12 @@
   <div class="row">
     {%for project in projects%}
       <div class="card m-4" style="width: 18rem;">
-        <a href="#"><img class="card-img-top" src="{{project.landing.cdn_url}}" alt="Card image cap"></a>
+        <a href="{%url 'details' project.id%}"><img class="card-img-top" src="{{project.landing.cdn_url}}" alt="Card image cap"></a>
         <div class="card-body">
           <h5 class="card-title">{{project.title}}</h5>
           <p class="card-text">Upload by <b>{{project.user.username}}</b></p>
           <a href="{{project.live_site}}" class="btn btn-primary">Visit Site</a>
+
         </div>
       </div>
     {%endfor%}

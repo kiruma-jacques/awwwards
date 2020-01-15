@@ -38,6 +38,10 @@ def myProfile(request,**kwargs):
     }
     return render(request, 'profile.html', locals())
 
+def details(request, id):
+    current_site=Project.single_project(id=Project.id)
+    return render(request, 'proj_details.html', {'current_site':current_site})
+
 # def review(request,id):
 #     current_user=request.user
 #     current_site=Project.objects.filter(id=sid)
