@@ -41,10 +41,7 @@ class Review(models.Model):
 
     def __str__(self):
         return self.user.username
-
-    def save(self):
-        self.save()
-
+    
     @classmethod
     def get_all_reviews(cls):
         return cls.objects.all()

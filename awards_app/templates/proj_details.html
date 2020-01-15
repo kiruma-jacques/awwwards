@@ -2,9 +2,36 @@
 {%load bootstrap4%}
 
 {%block content%}
-<p>{{current_site.title}}</p>
-<form class="form-group" action="{%url 'details'%}" method="post">
-  {%csrf_token%}
-  {{review_form}}
-</form>
+<!-- review Modal -->
+<div class="modal fade" id="reviewForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Post an image</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="form-group" action="{% url 'details' current_site.id%}" method="post">
+        {% csrf_token %}
+        {%bootstrap_form review_form%}
+        <input class="btn btn-outline-success" type="submit" name="" value="Upload">
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<h1 class="text-center"><b>{{current_site.title}}</b></h1>
+<img class="d-block w-100" src="{{current_site.landing.cdn_url}}" alt="First slide" height="600">
+<div class="text-center mt-3">
+  <h5><i>{{current_site.description}}</i></h5>
+  <div class="container">
+    <div class="row text-center">
+      <a href="{{current_site.live_site}}"><button class="btn btn-outline-danger" name="button">Visit site</button></a>
+      <button data-toggle="modal" data-target="#reviewForm" class="btn btn-outline-info ml-2" name="button">Leave a review?</button>
+    </div>
+  </div>
+</div>
 {%endblock%}

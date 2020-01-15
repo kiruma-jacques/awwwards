@@ -39,27 +39,23 @@ def myProfile(request,**kwargs):
     return render(request, 'profile.html', locals())
 
 def details(request, id):
-    current_site=Project.single_project(id=Project.id)
-    return render(request, 'proj_details.html', {'current_site':current_site})
-
-# def review(request,id):
-#     current_user=request.user
-#     current_site=Project.objects.filter(id=sid)
-#     review_form=ReviewForm(request.POST)
-#     if review_form.is_valid():
-#         review=review_form.save(commit=False)
-#         review.user=current_user
-#         review.project=current_site
-#         review.save()
-#         return HttpResponseRedirect(request.path_info)
-#     else:
-#         review_form=ReviewForm()
-#     context={
-#         'current_user':current_user,
-#         'current_site':current_site,
-#         'review_form':review_form,
-#     }
-#     return render(request, 'comment.html', locals())
+    current_site=Project.single_project(id)
+    current_user=request.user
+    review_form=ReviewForm(request.POST)
+    if review_form.is_valid():
+        review=review_form.save(commit=False)
+        review.user=current_user
+        review.project=current_site
+        review.save()
+        return HttpResponseRedirect(request.path_info)
+    else:
+        review_form=ReviewForm()
+    context={
+        'current_user':current_user,
+        'current_site':current_site,
+        'review_form':review_form,
+    }
+    return render(request, 'proj_details.html',locals())
 
 def search_title(request):
     if request.method == "GET":

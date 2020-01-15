@@ -22,7 +22,7 @@ class ProjectUploadForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model=Review
-        exclude=['user','project']
+        fields=('comment', 'design', 'useability', 'content')
         widget={
             'comment':forms.Textarea(attrs={"class":"form-control mb-4"}),
             'design':forms.Select(choices=SCORES,attrs={"class":"form-control mb-4"}),
