@@ -63,6 +63,7 @@ else:
 
 INSTALLED_APPS = [
     'bootstrap4',
+    'rest_framework',
     'pyuploadcare.dj',
     'awards_app.apps.AwardsAppConfig',
     'django.contrib.admin',
